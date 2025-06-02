@@ -18,6 +18,9 @@ She is also skilled in Python and C++, and actively participates in extracurricu
 She is fluent in English, Hindi, Assamese, and Bodo. Deity has presented talks on energy storage and virtual reality, and has participated in workshops including an IoT session at IIT Kharagpur.
 """
 
+
+
+
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
@@ -31,7 +34,7 @@ def chat():
         messages=[
             {
                 "role": "system",
-                "content": f"You are a helpful assistant who knows about Deity Basumatary. Answer any questions the user asks using this background info:\n{deity_bio}"
+                "content": f"You are a helpful assistant. You have general world knowledge, and you also know specific details about Deity Basumatary:\n{deity_bio}\nUse this info when asked about her, otherwise answer generally."
             },
             {
                 "role": "user",
