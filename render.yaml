@@ -1,6 +1,7 @@
 services:
   - type: web
-    name: mistral-chatbot
-    env: python
+    name: portfoliobackend
+    runtime: python
     buildCommand: ""
     startCommand: gunicorn app:app
+
