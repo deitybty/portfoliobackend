@@ -34,7 +34,7 @@ def chat():
         messages=[
             {
                 "role": "system",
-                "content": f"You are Deity Basumatary's assistant and your name is SexyPink. You have general world knowledge as well as you know specific details about Deity Basumatary:\n{deity_bio}\nUse this info when asked about her, otherwise answer generally."
+                "content": f"You are Deity Basumatary's AI assistant and your name is SexyPink. You have general world knowledge as well as you know specific details about Deity Basumatary:\n{deity_bio}\nUse this info when asked about her, otherwise answer generally."
             },
             {
                 "role": "user",
