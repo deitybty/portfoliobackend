@@ -3,35 +3,19 @@ from flask_cors import CORS
 from mistralai import Mistral
 
 app = Flask(__name__)
-CORS(app, origins=["https://deitybty.github.io"])  # 👈 allow requests from your frontend origin
+CORS(app, origins=["https://deitybty.github.io"])
 
 client = Mistral(api_key="fmHSF8MVirIksFQG1CBwkymLxwKR0Btp")
 model = "mistral-large-latest"
 
-# @app.route('/chat', methods=['POST'])
-# def chat():
-#     data = request.get_json()
-#     user_message = data.get("message", "")
+deity_bio = """
+Deity Basumatary is a Physics researcher and educator from Assam, India. 
+She holds an M.Sc. in Physics from Cotton University, specializing in Condensed Matter Physics, Thin Film Physics, and Nano Materials. 
+Her research focuses on energy storage materials, particularly graphitic carbon nitride-polypyrrole nanocomposites. 
+Deity is currently a Lecturer at Sijou Academy, where she teaches Physics to senior secondary students.
 
-#     if not user_message:
-#         return jsonify({"reply": "No message provided"}), 400
-
-#     response = client.chat.complete(
-#         model=model,
-#         messages=[{
-#             "role": "user",
-#             "content": user_message
-#         }]
-#     )
-
-#     reply = response.choices[0].message.content
-#     return jsonify({"reply": reply})
-
-user_bio = """
-Deity Basumatary is a passionate Physics researcher and educator from Assam, India. She holds a Master's degree in Physics from Cotton University with a specialization in Condensed Matter Physics, Thin Film Physics, and Nano Materials. Her master's thesis focused on synthesizing and analyzing the electrochemical properties of graphitic carbon nitride-polypyrrole nanocomposites for energy storage applications.
-Deity is currently a Lecturer at Sijou Academy, where she teaches Physics to higher secondary students, fostering critical thinking and a strong scientific foundation. She also has prior experience running private tutoring classes and is known for her engaging teaching style and effective mentorship.
-In addition to her academic and teaching pursuits, Deity has skills in programming (Python, C++), communication, and public speaking. She is also actively involved in extracurricular activities such as yoga, dance, and anchoring. She has participated in national-level workshops, including an IoT workshop at IIT Kharagpur.
-Deity is fluent in English, Hindi, Assamese, and is a native Bodo speaker. She is deeply interested in the advancement of energy storage technologies and enjoys sharing her knowledge through talks and presentations on science and technology topics.
+She is also skilled in Python and C++, and actively participates in extracurricular activities such as yoga, dance, anchoring, and scientific talks. 
+She is fluent in English, Hindi, Assamese, and Bodo. Deity has presented talks on energy storage and virtual reality, and has participated in workshops including an IoT session at IIT Kharagpur.
 """
 
 @app.route('/chat', methods=['POST'])
@@ -47,7 +31,7 @@ def chat():
         messages=[
             {
                 "role": "system",
-                "content": f"You are a helpful AI assistant who knows the following about the user:\n{user_bio}"
+                "content": f"You are a helpful assistant who knows about Deity Basumatary. Answer any questions the user asks using this background info:\n{deity_bio}"
             },
             {
                 "role": "user",
@@ -58,4 +42,3 @@ def chat():
 
     reply = response.choices[0].message.content
     return jsonify({"reply": reply})
-
